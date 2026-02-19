@@ -1,0 +1,78 @@
+{
+  "embedding": {
+    "model": "text-embedding-3-small",
+    "dimensions": 1536,
+    "maxTokensPerRequest": 8191,
+    "batchSize": 100
+  },
+  "processing": {
+    "batchSize": 5,
+    "concurrency": 1,
+    "retryAttempts": 3,
+    "retryDelayMs": 1000
+  },
+  "compliance": {
+    "piiDetection": {
+      "enabled": true,
+      "mode": "flag",
+      "entities": [
+        "email",
+        "phone",
+        "ssn",
+        "creditCard",
+        "name",
+        "address",
+        "ipAddress"
+      ]
+    },
+    "gdpr": {
+      "autoFlagPII": true,
+      "defaultSensitivity": "None"
+    }
+  },
+  "metadataInference": {
+    "departments": {
+      "Operations": ["operations", "ops", "logistics", "fleet", "maintenance", "service"],
+      "Commercial": ["sales", "commercial", "revenue", "pricing", "customer", "marketing"],
+      "Platform": ["platform", "engineering", "tech", "software", "development", "api"],
+      "Finance": ["finance", "accounting", "budget", "invoice", "payment"],
+      "Legal": ["legal", "compliance", "contract", "agreement", "terms"],
+      "HR": ["hr", "human resources", "recruitment", "employee", "onboarding"]
+    },
+    "documentTypes": {
+      "Policy": ["policy", "guideline", "procedure", "standard"],
+      "FAQ": ["faq", "frequently asked", "questions", "help"],
+      "Contract": ["contract", "agreement", "terms", "nda", "sla"],
+      "Report": ["report", "analysis", "summary", "overview"],
+      "Manual": ["manual", "guide", "handbook", "documentation"],
+      "Email": ["email", "message", "correspondence"]
+    },
+    "accessLevels": {
+      "default": "internal",
+      "piiDetected": "restricted",
+      "contractKeywords": "confidential"
+    }
+  },
+  "sources": {
+    "notion": {
+      "pageSize": 100
+    },
+    "sharepoint": {
+      "apiVersion": "v1.0",
+      "pageSize": 200
+    },
+    "hubspot": {
+      "pageSize": 100
+    }
+  },
+  "logging": {
+    "level": "info",
+    "format": "json",
+    "timestampFormat": "ISO"
+  },
+  "n8n": {
+    "apiUrl": "https://your-n8n-instance.example.com/api/v1",
+    "timeout": 30000
+  }
+}
+

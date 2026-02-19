@@ -1,0 +1,13 @@
+{
+  "evaluated_items": 11307,
+  "errors": 91,
+  "elapsed_sec": 1742.1,
+  "subcategories": 15,
+  "categories": 9,
+  "files": {
+    "subcategory_accuracy": "auto-ticket-categorizer-subcategory-accuracy-2026-01-19.csv",
+    "category_accuracy": "auto-ticket-categorizer-category-accuracy-2026-01-19.csv",
+    "subcategory_confusion": "auto-ticket-categorizer-subcategory-confusion-2026-01-19.csv",
+    "category_confusion": "auto-ticket-categorizer-category-confusion-2026-01-19.csv"
+  }
+}
