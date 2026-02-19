@@ -1,0 +1,178 @@
+{
+  "timestamp_utc": "2026-01-17T11:09:30.526251Z",
+  "sample_counts": {
+    "ids": 2019,
+    "with_embeddings": 2019,
+    "preds": 2019,
+    "errors": 0
+  },
+  "top_categories": [
+    "General",
+    "Administrative",
+    "Technical",
+    "Payment",
+    "Technical Support",
+    "RFID Support"
+  ],
+  "top_subcategories": [
+    "Other",
+    "Invoice",
+    "App",
+    "Charger offline",
+    "Subscription and pricing",
+    "Ordering",
+    "Onboarding",
+    "Unstable charging",
+    "Hardware failure",
+    "User error"
+  ],
+  "category_metrics": {
+    "General": {
+      "tp": 951,
+      "fp": 161,
+      "fn": 21,
+      "precision": 0.8552158273381295,
+      "recall": 0.9783950617283951,
+      "f1": 0.9126679462571977,
+      "support": 972
+    },
+    "Administrative": {
+      "tp": 214,
+      "fp": 55,
+      "fn": 123,
+      "precision": 0.7955390334572491,
+      "recall": 0.6350148367952523,
+      "f1": 0.7062706270627064,
+      "support": 337
+    },
+    "Technical": {
+      "tp": 296,
+      "fp": 64,
+      "fn": 62,
+      "precision": 0.8222222222222222,
+      "recall": 0.8268156424581006,
+      "f1": 0.8245125348189415,
+      "support": 358
+    },
+    "Payment": {
+      "tp": 182,
+      "fp": 29,
+      "fn": 57,
+      "precision": 0.8625592417061612,
+      "recall": 0.7615062761506276,
+      "f1": 0.8088888888888888,
+      "support": 239
+    },
+    "Technical Support": {
+      "tp": 22,
+      "fp": 5,
+      "fn": 38,
+      "precision": 0.8148148148148148,
+      "recall": 0.36666666666666664,
+      "f1": 0.5057471264367815,
+      "support": 60
+    },
+    "RFID Support": {
+      "tp": 38,
+      "fp": 1,
+      "fn": 14,
+      "precision": 0.9743589743589743,
+      "recall": 0.7307692307692307,
+      "f1": 0.8351648351648352,
+      "support": 52
+    }
+  },
+  "subcategory_metrics": {
+    "Other": {
+      "tp": 160,
+      "fp": 70,
+      "fn": 130,
+      "precision": 0.6956521739130435,
+      "recall": 0.5517241379310345,
+      "f1": 0.6153846153846154,
+      "support": 290
+    },
+    "Invoice": {
+      "tp": 213,
+      "fp": 77,
+      "fn": 75,
+      "precision": 0.7344827586206897,
+      "recall": 0.7395833333333334,
+      "f1": 0.7370242214532872,
+      "support": 288
+    },
+    "App": {
+      "tp": 97,
+      "fp": 95,
+      "fn": 85,
+      "precision": 0.5052083333333334,
+      "recall": 0.532967032967033,
+      "f1": 0.5187165775401069,
+      "support": 182
+    },
+    "Charger offline": {
+      "tp": 184,
+      "fp": 125,
+      "fn": 55,
+      "precision": 0.5954692556634305,
+      "recall": 0.7698744769874477,
+      "f1": 0.6715328467153284,
+      "support": 239
+    },
+    "Subscription and pricing": {
+      "tp": 77,
+      "fp": 23,
+      "fn": 69,
+      "precision": 0.77,
+      "recall": 0.5273972602739726,
+      "f1": 0.6260162601626016,
+      "support": 146
+    },
+    "Ordering": {
+      "tp": 98,
+      "fp": 114,
+      "fn": 58,
+      "precision": 0.46226415094339623,
+      "recall": 0.6282051282051282,
+      "f1": 0.532608695652174,
+      "support": 156
+    },
+    "Onboarding": {
+      "tp": 49,
+      "fp": 54,
+      "fn": 103,
+      "precision": 0.47572815533980584,
+      "recall": 0.3223684210526316,
+      "f1": 0.38431372549019605,
+      "support": 152
+    },
+    "Unstable charging": {
+      "tp": 61,
+      "fp": 52,
+      "fn": 81,
+      "precision": 0.5398230088495575,
+      "recall": 0.4295774647887324,
+      "f1": 0.4784313725490196,
+      "support": 142
+    },
+    "Hardware failure": {
+      "tp": 74,
+      "fp": 41,
+      "fn": 75,
+      "precision": 0.6434782608695652,
+      "recall": 0.4966442953020134,
+      "f1": 0.5606060606060606,
+      "support": 149
+    },
+    "User error": {
+      "tp": 73,
+      "fp": 38,
+      "fn": 71,
+      "precision": 0.6576576576576577,
+      "recall": 0.5069444444444444,
+      "f1": 0.5725490196078431,
+      "support": 144
+    }
+  },
+  "elapsed_sec": 267.9
+}

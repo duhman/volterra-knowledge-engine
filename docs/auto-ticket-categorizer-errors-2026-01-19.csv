@@ -1,0 +1,15 @@
+workflow_id,workflow_name,execution_id,started_at,stopped_at,node_name,node_type,error_name,message,http_code
+YOUR_WORKFLOW_ID,AI agent support - HubSpot ticket categorizer,722,2026-01-19T18:27:29.642Z,2026-01-19T18:27:38.734Z,OpenAI Chat Model,@n8n/n8n-nodes-langchain.lmChatOpenAi,NodeApiError,Connection error.,
+YOUR_WORKFLOW_ID,AI agent support - HubSpot ticket categorizer,238,2026-01-16T16:54:59.419Z,2026-01-16T16:54:59.452Z,Extract Message,,SyntaxError,Invalid or unexpected token ,
+YOUR_WORKFLOW_ID,AI agent support - HubSpot ticket categorizer,237,2026-01-16T16:54:18.765Z,2026-01-16T16:54:18.975Z,Extract Message,,SyntaxError,Invalid or unexpected token ,
+YOUR_WORKFLOW_ID,AI agent support - HubSpot ticket categorizer,219,2026-01-16T12:16:43.559Z,2026-01-16T12:16:47.281Z,Match Training Conversations (RPC),,AxiosError,Request failed with status code 500 ,
+YOUR_WORKFLOW_ID,AI agent support - HubSpot ticket categorizer,218,2026-01-16T12:15:42.996Z,2026-01-16T12:15:44.357Z,Generate Embedding (MCP),,,Embedding parse failed [line 24],
+YOUR_WORKFLOW_ID,AI agent support - HubSpot ticket categorizer,217,2026-01-16T12:14:46.970Z,2026-01-16T12:14:47.005Z,Generate Embedding (MCP),,ReferenceError,fetch is not defined [line 2],
+YOUR_WORKFLOW_ID,AI agent support - HubSpot ticket categorizer,216,2026-01-16T12:13:37.058Z,2026-01-16T12:13:37.311Z,Parse Embedding,,,Embedding parse failed [line 11],
+YOUR_WORKFLOW_ID,AI agent support - HubSpot ticket categorizer,215,2026-01-16T12:12:44.482Z,2026-01-16T12:12:44.762Z,Generate Embedding (MCP),n8n-nodes-base.httpRequest,NodeApiError,Bad request - please check your parameters,400
+YOUR_WORKFLOW_ID,AI agent support - HubSpot ticket categorizer,214,2026-01-16T12:12:08.422Z,2026-01-16T12:12:08.582Z,Generate Embedding (MCP),,ExpressionError,access to env vars denied,
+YOUR_WORKFLOW_ID,AI agent support - HubSpot ticket categorizer,213,2026-01-16T12:11:33.781Z,2026-01-16T12:11:33.862Z,Generate Embedding (MCP),,ExpressionError,access to env vars denied,
+YOUR_WORKFLOW_ID,AI agent support - HubSpot ticket categorizer,212,2026-01-16T12:10:00.648Z,2026-01-16T12:10:00.714Z,Supabase Training Conversations Deterministic,@n8n/n8n-nodes-langchain.vectorStoreSupabase,NodeOperationError,"Only the ""load"", ""update"", ""insert"", and ""retrieve-as-tool"" operation modes are supported with execute",
+YOUR_WORKFLOW_ID,AI agent support - HubSpot ticket categorizer,211,2026-01-16T12:08:25.042Z,2026-01-16T12:08:25.194Z,Deterministic Match,,,Embeddings not found on item [line 5],
+YOUR_WORKFLOW_ID,AI agent support - HubSpot ticket categorizer,206,2026-01-15T23:32:54.457Z,2026-01-15T23:32:54.523Z,Simple Memory,@n8n/n8n-nodes-langchain.memoryBufferWindow,NodeOperationError,Error in sub-node Simple Memory,
+6jivr1yvU1Y3mt5i,HubSpot Ticket Categorizer - Ops Comparison Sync,241,2026-01-16T17:00:00.036Z,2026-01-16T17:00:00.164Z,Sync Ops Labels,,AxiosError,Request failed with status code 404 ,

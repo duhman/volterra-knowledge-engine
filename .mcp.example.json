@@ -1,0 +1,24 @@
+{
+  "mcpServers": {
+    "volterra-kb": {
+      "type": "http",
+      "url": "https://your-project.supabase.co/functions/v1/mcp-readonly",
+      "headers": {
+        "Authorization": "Bearer <SUPABASE_CLOUD_ANON_KEY>"
+      }
+    },
+    "n8n-mcp": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "supergateway",
+        "--streamableHttp",
+        "https://your-n8n-instance.example.com/mcp-server/http",
+        "--header",
+        "authorization:Bearer <N8N_MCP_TOKEN>"
+      ]
+    }
+  }
+}
+

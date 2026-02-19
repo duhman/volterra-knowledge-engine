@@ -1,0 +1,53 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+
+# Environment variables
+.env
+.env.local
+.env.*.local
+
+# MCP configuration (contains API tokens)
+.mcp.json
+
+# Local Claude/Cursor config (may contain secrets)
+.claude/settings.local.json
+
+# Local/derived datasets (may contain PII/tokens)
+categorized-with-context.jsonl
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test coverage
+coverage/
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+supabase/.temp/
+
+# Failed ingestion logs
+failed-documents/
+dead-letter/
+
+# HubSpot ticket exports (contain PII)
+*-tickets-*.jsonl
+*-tickets-*.jsonl.gz
+hubspot-tickets-export.*
+

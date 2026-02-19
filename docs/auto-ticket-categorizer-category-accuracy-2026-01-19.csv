@@ -1,0 +1,10 @@
+category,total,correct,accuracy
+Administrative,1632,1115,0.683211
+Administrative;Payment,1,0,0.000000
+Administrative;Technical,3,0,0.000000
+General,7459,7347,0.984985
+Order Support,10,0,0.000000
+Payment,772,578,0.748705
+RFID Support,54,41,0.759259
+Technical,1324,1139,0.860272
+Technical Support,52,22,0.423077

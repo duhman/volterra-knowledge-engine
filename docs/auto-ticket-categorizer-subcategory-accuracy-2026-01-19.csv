@@ -1,0 +1,16 @@
+subcategory,total,correct,accuracy
+App,1538,881,0.572822
+Charger offline,1106,783,0.707957
+Charging,244,48,0.196721
+Hardware failure,445,226,0.507865
+IT / Cloud error,166,44,0.265060
+Invoice,1374,903,0.657205
+Onboarding,653,257,0.393568
+Ordering,1196,814,0.680602
+Other,2135,1485,0.695550
+RFID,227,162,0.713656
+Service,238,136,0.571429
+Subscription and pricing,748,397,0.530749
+Termination,357,236,0.661064
+Unstable charging,483,215,0.445135
+User error,397,196,0.493703

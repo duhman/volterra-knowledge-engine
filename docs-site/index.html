@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Volterra Knowledge Base API</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary: rgb(8, 64, 77);
+      --primary-dark: rgb(4, 45, 55);
+      --accent: rgb(200, 205, 85);
+      --accent-light: rgb(240, 245, 210);
+      --text: rgb(51, 0, 24);
+      --link: rgb(237, 90, 108);
+      --cream: rgb(252, 251, 247);
+      --code-bg: #1e1e2e;
+      --grain-opacity: 0.03;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'DM Sans', system-ui, sans-serif;
+      background: var(--cream);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    .font-display {
+      font-family: 'Playfair Display', Georgia, serif;
+    }
+
+    /* Grain texture overlay */
+    .grain {
+      position: relative;
+    }
+    .grain::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+      opacity: var(--grain-opacity);
+      pointer-events: none;
+      z-index: 1;
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(24px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes countUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .animate-fade-in-up {
+      animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .animate-count-up {
+      animation: countUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* Card hover effect */
+    .card-hover {
+      transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1),
+                  box-shadow 0.4s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .card-hover:hover {
+      transform: translateY(-4px);
+      box-shadow:
+        0 20px 40px -12px rgba(8, 64, 77, 0.15),
+        0 8px 16px -8px rgba(8, 64, 77, 0.1);
+    }
+
+    header {
+      background: var(--primary);
+      color: white;
+      padding: 4rem 1.5rem;
+      text-align: left;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header .content {
+      position: relative;
+      z-index: 10;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 3rem;
+      font-weight: 500;
+      margin-bottom: 1rem;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+    }
+
+    header h1 span {
+      color: var(--accent);
+      font-style: italic;
+    }
+
+    header p {
+      opacity: 0.9;
+      font-size: 1.15rem;
+      max-width: 600px;
+      line-height: 1.6;
+    }
+
+    .badge {
+      display: inline-block;
+      background: var(--accent);
+      color: var(--primary);
+      padding: 0.375rem 1rem;
+      border-radius: 9999px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-top: 1.5rem;
+      letter-spacing: 0.02em;
+    }
+
+    main {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 4rem 1.5rem;
+    }
+
+    section {
+      margin-bottom: 4rem;
+      opacity: 0;
+      animation: fadeInUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    section:nth-child(1) { animation-delay: 0.1s; }
+    section:nth-child(2) { animation-delay: 0.2s; }
+    section:nth-child(3) { animation-delay: 0.3s; }
+    section:nth-child(4) { animation-delay: 0.4s; }
+    section:nth-child(5) { animation-delay: 0.5s; }
+    section:nth-child(6) { animation-delay: 0.6s; }
+
+    h2 {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 1.75rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    h2::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(to right, var(--accent), transparent);
+    }
+
+    h3 {
+      font-size: 1rem;
+      font-weight: 600;
+      margin: 2rem 0 1rem;
+      color: var(--primary);
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+    /* Stats with vertical accent bars */
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+    }
+
+    .stat {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      position: relative;
+      overflow: hidden;
+      opacity: 0;
+      animation: countUp 0.4s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .stat:nth-child(1) { animation-delay: 0.2s; }
+    .stat:nth-child(2) { animation-delay: 0.3s; }
+    .stat:nth-child(3) { animation-delay: 0.4s; }
+    .stat:nth-child(4) { animation-delay: 0.5s; }
+    .stat:nth-child(5) { animation-delay: 0.6s; }
+
+    .stat::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 4px;
+      background: linear-gradient(to bottom, var(--accent), var(--primary));
+    }
+
+    .stat-value {
+      font-family: 'Playfair Display', Georgia, serif;
+      font-size: 2.25rem;
+      font-weight: 500;
+      color: var(--primary);
+      font-variant-numeric: tabular-nums;
+      letter-spacing: -0.03em;
+    }
+
+    .stat-label {
+      color: #666;
+      font-size: 0.8rem;
+      margin-top: 0.25rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .endpoint {
+      background: white;
+      padding: 1.5rem;
+      border-radius: 12px;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      border-top: 3px solid;
+      border-image: linear-gradient(to right, var(--accent), var(--primary)) 1;
+    }
+
+    .endpoint-url {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .method {
+      background: var(--primary);
+      color: white;
+      padding: 0.25rem 0.625rem;
+      border-radius: 4px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      font-family: 'JetBrains Mono', monospace;
+    }
+
+    .url {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.9rem;
+      color: var(--primary);
+      word-break: break-all;
+    }
+
+    pre {
+      background: var(--code-bg);
+      color: #cdd6f4;
+      padding: 1.5rem;
+      border-radius: 12px;
+      overflow-x: auto;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);
+    }
+
+    code {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 0.875em;
+      background: rgba(8, 64, 77, 0.08);
+      padding: 0.125rem 0.5rem;
+      border-radius: 4px;
+      color: var(--primary);
+    }
+
+    pre code {
+      background: none;
+      padding: 0;
+      color: inherit;
+    }
+
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1rem;
+    }
+
+    .tool {
+      background: white;
+      padding: 1.25rem;
+      border-radius: 12px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+      position: relative;
+      overflow: hidden;
+      border-top: 3px solid;
+      border-image: linear-gradient(to right, var(--accent), var(--primary)) 1;
+    }
+
+    .tool.card-hover:hover {
+      box-shadow:
+        0 20px 40px -12px rgba(8, 64, 77, 0.15),
+        0 8px 16px -8px rgba(8, 64, 77, 0.1),
+        0 0 0 1px rgba(200, 205, 85, 0.3);
+    }
+
+    .tool h4 {
+      font-size: 0.95rem;
+      color: var(--primary);
+      font-family: 'JetBrains Mono', monospace;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+    }
+
+    .tool p {
+      font-size: 0.875rem;
+      color: #666;
+      line-height: 1.5;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.9rem;
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+    }
+
+    th, td {
+      text-align: left;
+      padding: 1rem;
+      border-bottom: 1px solid rgba(8, 64, 77, 0.1);
+    }
+
+    th {
+      background: var(--primary);
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tr:hover td {
+      background: rgba(200, 205, 85, 0.08);
+    }
+
+    footer {
+      text-align: center;
+      padding: 3rem 1.5rem;
+      color: white;
+      font-size: 0.875rem;
+      background: var(--primary);
+      position: relative;
+      overflow: hidden;
+    }
+
+    footer::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 2px;
+      background: linear-gradient(to right, transparent, var(--accent), transparent);
+    }
+
+    footer .content {
+      position: relative;
+      z-index: 10;
+    }
+
+    @media (max-width: 640px) {
+      header h1 { font-size: 2rem; }
+      header { padding: 2.5rem 1rem; }
+      .stats { grid-template-columns: repeat(2, 1fr); }
+      .tools-grid { grid-template-columns: 1fr; }
+      main { padding: 2rem 1rem; }
+    }
+  </style>
+</head>
+<body>
+  <header class="grain">
+    <div class="content">
+      <h1>Volterra <span>Knowledge Base</span> API</h1>
+      <p>MCP-compatible REST API for semantic search across documents, support tickets, Slack discussions, and WoD deals</p>
+      <span class="badge">32 Tools &middot; JSON-RPC 2.0</span>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <h2>What It Is</h2>
+      <p>Search engine for Volterra's internal knowledge - documents, support history, Slack conversations, and deal data. Automatically syncs daily from 8+ sources and provides semantic search via 32 specialized tools.</p>
+      
+      <h3>Who Uses It</h3>
+      <p><strong>Sales:</strong> Find similar deals, pricing history, customer issues<br>
+      <strong>Support:</strong> Search past ticket resolutions, common problems, FAQs<br>
+      <strong>Product:</strong> Discover feature requests, bugs, usage patterns<br>
+      <strong>Leadership:</strong> Access company docs, meeting notes, decisions</p>
+
+      <h3>Typical Use Cases</h3>
+      <ul style="list-style: disc; margin-left: 1.5rem; line-height: 1.8; color: #333;">
+        <li><strong>Quick answers:</strong> "What's our policy on subscription transfers?"</li>
+        <li><strong>Troubleshooting:</strong> "How do we fix charging error code E503?"</li>
+        <li><strong>Customer context:</strong> "Show me all tickets from BRF Solsiden"</li>
+        <li><strong>Deal research:</strong> "Compare installation costs for similar buildings in Oslo"</li>
+        <li><strong>Pattern analysis:</strong> "What are common reasons for unstable charging?"</li>
+        <li><strong>Expert finder:</strong> "Who participates most in #help-me-platform threads?"</li>
+        <li><strong>Data freshness:</strong> "When was the last Notion sync?"</li>
+      </ul>
+
+      <h3>How It Works</h3>
+      <ol style="list-style: decimal; margin-left: 1.5rem; line-height: 1.8; color: #333;">
+        <li><strong>Daily syncs</strong> pull latest data from Notion (05:00), HubSpot (06:00), Slack (06:00)</li>
+        <li><strong>Embeddings generated</strong> for all text using OpenAI (1536-dim vectors)</li>
+        <li><strong>Stored in pgvector</strong> with HNSW indexes for fast similarity search</li>
+        <li><strong>Query via JSON-RPC</strong> using semantic search or table filters</li>
+        <li><strong>Results ranked</strong> by cosine similarity and returned with full context</li>
+      </ol>
+    </section>
+
+    <div class="stats">
+      <div class="stat">
+        <div class="stat-value">9,588</div>
+        <div class="stat-label">Documents</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">15,095</div>
+        <div class="stat-label">Tickets</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">893</div>
+        <div class="stat-label">Slack</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">57</div>
+        <div class="stat-label">WoD Deals</div>
+      </div>
+      <div class="stat">
+        <div class="stat-value">127</div>
+        <div class="stat-label">Notion</div>
+      </div>
+    </div>
+
+    <section>
+      <h2>Quick Start</h2>
+
+      <div class="endpoint">
+        <div class="endpoint-url">
+          <span class="method">POST</span>
+          <span class="url">/functions/v1/mcp-readonly</span>
+        </div>
+        <p>Base URL: <code>https://&lt;PROJECT_REF&gt;.supabase.co</code></p>
+      </div>
+
+      <h3>Example Request</h3>
+      <pre><code>curl -X POST "https://&lt;PROJECT_REF&gt;.supabase.co/functions/v1/mcp-readonly" \
+  -H "Authorization: Bearer $SUPABASE_ANON_KEY" \
+  -H "Content-Type: application/json" \
+  -d '{
+    "jsonrpc": "2.0",
+    "id": 1,
+    "method": "tools/call",
+    "params": {
+      "name": "kb_search",
+      "arguments": {
+        "query": "charging error codes",
+        "match_count": 5
+      }
+    }
+  }'</code></pre>
+    </section>
+
+    <section>
+      <h2>Available Tools</h2>
+
+      <h3>Search & Discovery</h3>
+      <div class="tools-grid">
+        <div class="tool card-hover">
+          <h4>kb_search</h4>
+          <p>Primary semantic search across all sources (documents, tickets, Slack, WoD)</p>
+        </div>
+        <div class="tool card-hover">
+          <h4>search</h4>
+          <p>OpenAI Deep Research compatible search (flat results)</p>
+        </div>
+        <div class="tool card-hover">
+          <h4>fetch</h4>
+          <p>Get full content by ID after search</p>
+        </div>
+      </div>
+
+      <h3>Data Browsing</h3>
+      <div class="tools-grid">
+        <div class="tool card-hover">
+          <h4>query_table</h4>
+          <p>SQL-like queries with filters (up to 500 rows)</p>
+        </div>
+        <div class="tool card-hover">
+          <h4>count_rows</h4>
+          <p>Aggregations, statistics, group by</p>
+        </div>
+        <div class="tool card-hover">
+          <h4>list_tables</h4>
+          <p>Discover all 14 tables and schemas</p>
+        </div>
+        <div class="tool card-hover">
+          <h4>db_table_stats</h4>
+          <p>Quick row counts for all tables</p>
+        </div>
+      </div>
+
+      <h3>Relationship Traversal</h3>
+      <div class="tools-grid">
+        <div class="tool card-hover">
+          <h4>fetch_thread_messages</h4>
+          <p>Complete Slack thread (up to 200 messages)</p>
+        </div>
+        <div class="tool card-hover">
+          <h4>fetch_conversation_messages</h4>
+          <p>Complete HubSpot ticket thread</p>
+        </div>
+        <div class="tool card-hover">
+          <h4>fetch_document_full</h4>
+          <p>Full document content (up to 200K chars)</p>
+        </div>
+        <div class="tool card-hover">
+          <h4>fetch_wod_deal_full</h4>
+          <p>Complete WoD deal with circuits, costs, offers</p>
+        </div>
+        <div class="tool card-hover">
+          <h4>fetch_notion_children</h4>
+          <p>Navigate Notion page hierarchy</p>
+        </div>
+      </div>
+
+      <h3>Analytics & Insights</h3>
+      <div class="tools-grid">
+        <div class="tool card-hover">
+          <h4>analyze_slack_thread_network</h4>
+          <p>Identify experts by participation</p>
+        </div>
+        <div class="tool card-hover">
+          <h4>analyze_training_resolution_patterns</h4>
+          <p>Common issues and resolutions</p>
+        </div>
+        <div class="tool card-hover">
+          <h4>find_similar_documents</h4>
+          <p>Find docs by metadata similarity</p>
+        </div>
+        <div class="tool card-hover">
+          <h4>compare_wod_deals</h4>
+          <p>Side-by-side deal comparison (2-5 deals)</p>
+        </div>
+        <div class="tool card-hover">
+          <h4>aggregate_costs_by_category</h4>
+          <p>WoD cost analytics</p>
+        </div>
+        <div class="tool card-hover">
+          <h4>get_data_freshness_report</h4>
+          <p>Check sync status for all sources</p>
+        </div>
+      </div>
+
+      <h3>Embedding Tools</h3>
+      <div class="tools-grid">
+        <div class="tool card-hover">
+          <h4>get_embeddings</h4>
+          <p>Raw 1536-dimensional vectors</p>
+        </div>
+        <div class="tool card-hover">
+          <h4>generate_embedding</h4>
+          <p>Convert text to vector</p>
+        </div>
+        <div class="tool card-hover">
+          <h4>compute_similarity</h4>
+          <p>Compare text against records</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Database Schema</h2>
+      <table>
+        <tr>
+          <th>Table</th>
+          <th>Records</th>
+          <th>Description</th>
+        </tr>
+        <tr>
+          <td><code>documents</code></td>
+          <td>9,588</td>
+          <td>PDFs, Word docs, FAQs, specifications, guides</td>
+        </tr>
+        <tr>
+          <td><code>training_conversations</code></td>
+          <td>15,095</td>
+          <td>HubSpot support tickets with embeddings</td>
+        </tr>
+        <tr>
+          <td><code>training_messages</code></td>
+          <td>~50K</td>
+          <td>Individual messages within conversations</td>
+        </tr>
+        <tr>
+          <td><code>slack_threads</code></td>
+          <td>450+</td>
+          <td>Slack thread root messages</td>
+        </tr>
+        <tr>
+          <td><code>slack_messages</code></td>
+          <td>893</td>
+          <td>Slack messages with embeddings</td>
+        </tr>
+        <tr>
+          <td><code>wod_deals</code></td>
+          <td>57</td>
+          <td>Wheel of Deal pricing (42 columns)</td>
+        </tr>
+        <tr>
+          <td><code>notion_pages</code></td>
+          <td>127</td>
+          <td>Platform documentation</td>
+        </tr>
+      </table>
+    </section>
+
+    <section>
+      <h2>Data Freshness</h2>
+      <table>
+        <tr>
+          <th>Source</th>
+          <th>Sync Schedule</th>
+        </tr>
+        <tr>
+          <td>Slack messages</td>
+          <td>Daily at 06:00 UTC</td>
+        </tr>
+        <tr>
+          <td>HubSpot tickets</td>
+          <td>Daily at 06:00 UTC</td>
+        </tr>
+        <tr>
+          <td>Notion pages</td>
+          <td>Daily at 05:00 UTC</td>
+        </tr>
+        <tr>
+          <td>Documents</td>
+          <td>Manual ingestion</td>
+        </tr>
+      </table>
+    </section>
+
+    <section>
+      <h2>Response Format</h2>
+      <pre><code>{
+  "jsonrpc": "2.0",
+  "id": 1,
+  "result": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"results\": [...], \"total\": 5}"
+      }
+    ]
+  }
+}</code></pre>
+    </section>
+  </main>
+
+  <footer class="grain">
+    <div class="content">
+      &copy; 2025 Volterra &middot; Internal Tools Platform &middot; <code style="background: rgba(255,255,255,0.15); color: white;">volterra_kb</code> schema
+    </div>
+  </footer>
+</body>
+</html>

@@ -1,0 +1,217 @@
+true_subcategory,pred_subcategory,count
+App,Onboarding,65
+App,App,881
+App,Ordering,132
+App,Other,40
+App,Invoice,77
+App,RFID,17
+App,Subscription and pricing,39
+App,User error,44
+App,IT / Cloud error,22
+App,Charger offline,56
+App,Unstable charging,48
+App,Termination,55
+App,Charging,30
+App,Hardware failure,21
+App,Service,11
+Hardware failure,Charger offline,44
+Hardware failure,Hardware failure,226
+Hardware failure,Service,44
+Hardware failure,Charging,5
+Hardware failure,Onboarding,11
+Hardware failure,User error,18
+Hardware failure,IT / Cloud error,14
+Hardware failure,Unstable charging,31
+Hardware failure,Other,17
+Hardware failure,App,11
+Hardware failure,Invoice,8
+Hardware failure,Subscription and pricing,1
+Hardware failure,Ordering,12
+Hardware failure,Termination,3
+Invoice,Invoice,903
+Invoice,App,90
+Invoice,Subscription and pricing,66
+Invoice,Ordering,108
+Invoice,Other,56
+Invoice,IT / Cloud error,12
+Invoice,Unstable charging,19
+Invoice,Termination,22
+Invoice,Charger offline,34
+Invoice,User error,16
+Invoice,RFID,4
+Invoice,Service,7
+Invoice,Charging,10
+Invoice,Hardware failure,7
+Invoice,Onboarding,20
+Subscription and pricing,Termination,39
+Subscription and pricing,User error,5
+Subscription and pricing,Invoice,61
+Subscription and pricing,Onboarding,28
+Subscription and pricing,Subscription and pricing,397
+Subscription and pricing,Other,55
+Subscription and pricing,Ordering,71
+Subscription and pricing,App,56
+Subscription and pricing,IT / Cloud error,6
+Subscription and pricing,Charger offline,7
+Subscription and pricing,Charging,6
+Subscription and pricing,Service,3
+Subscription and pricing,RFID,1
+Subscription and pricing,Unstable charging,9
+Subscription and pricing,Hardware failure,4
+Charger offline,Charger offline,783
+Charger offline,Hardware failure,30
+Charger offline,Onboarding,12
+Charger offline,Unstable charging,59
+Charger offline,RFID,2
+Charger offline,Ordering,18
+Charger offline,User error,48
+Charger offline,App,25
+Charger offline,Service,46
+Charger offline,IT / Cloud error,22
+Charger offline,Invoice,21
+Charger offline,Other,32
+Charger offline,Charging,5
+Charger offline,Termination,2
+Charger offline,Subscription and pricing,1
+Other,Other,1485
+Other,Ordering,104
+Other,App,78
+Other,Charger offline,58
+Other,Subscription and pricing,75
+Other,Hardware failure,24
+Other,Invoice,96
+Other,Charging,11
+Other,Onboarding,41
+Other,Unstable charging,40
+Other,Termination,40
+Other,IT / Cloud error,35
+Other,User error,17
+Other,Service,22
+Other,RFID,9
+Unstable charging,Unstable charging,215
+Unstable charging,Ordering,12
+Unstable charging,Charger offline,101
+Unstable charging,App,19
+Unstable charging,User error,38
+Unstable charging,Hardware failure,28
+Unstable charging,Onboarding,7
+Unstable charging,Service,15
+Unstable charging,Other,19
+Unstable charging,Invoice,7
+Unstable charging,Charging,12
+Unstable charging,Subscription and pricing,1
+Unstable charging,IT / Cloud error,5
+Unstable charging,Termination,1
+Unstable charging,RFID,3
+Ordering,Ordering,814
+Ordering,Other,69
+Ordering,Charger offline,12
+Ordering,Charging,12
+Ordering,User error,7
+Ordering,IT / Cloud error,5
+Ordering,Subscription and pricing,19
+Ordering,Onboarding,76
+Ordering,App,86
+Ordering,Unstable charging,12
+Ordering,Invoice,34
+Ordering,Termination,26
+Ordering,Hardware failure,10
+Ordering,Service,9
+Ordering,RFID,5
+Onboarding,Service,17
+Onboarding,Onboarding,257
+Onboarding,Charger offline,19
+Onboarding,Subscription and pricing,10
+Onboarding,Other,28
+Onboarding,App,68
+Onboarding,Ordering,130
+Onboarding,Invoice,29
+Onboarding,Hardware failure,17
+Onboarding,RFID,6
+Onboarding,Termination,23
+Onboarding,User error,9
+Onboarding,Unstable charging,10
+Onboarding,IT / Cloud error,21
+Onboarding,Charging,9
+User error,Ordering,9
+User error,User error,196
+User error,IT / Cloud error,14
+User error,Charger offline,46
+User error,App,33
+User error,Hardware failure,26
+User error,Unstable charging,33
+User error,Invoice,12
+User error,Service,6
+User error,Onboarding,11
+User error,Charging,3
+User error,Termination,1
+User error,Other,5
+User error,Subscription and pricing,1
+User error,RFID,1
+Termination,Termination,236
+Termination,App,26
+Termination,Invoice,29
+Termination,Subscription and pricing,14
+Termination,Ordering,17
+Termination,Onboarding,12
+Termination,Other,7
+Termination,Charger offline,8
+Termination,Hardware failure,1
+Termination,Charging,2
+Termination,Unstable charging,1
+Termination,User error,2
+Termination,IT / Cloud error,1
+Termination,Service,1
+Service,Charger offline,32
+Service,Service,136
+Service,Hardware failure,23
+Service,Unstable charging,17
+Service,Termination,1
+Service,Onboarding,1
+Service,Ordering,5
+Service,Other,11
+Service,User error,7
+Service,App,2
+Service,Invoice,3
+IT / Cloud error,App,11
+IT / Cloud error,IT / Cloud error,44
+IT / Cloud error,Hardware failure,9
+IT / Cloud error,Charger offline,41
+IT / Cloud error,Subscription and pricing,3
+IT / Cloud error,Other,16
+IT / Cloud error,Ordering,7
+IT / Cloud error,RFID,2
+IT / Cloud error,Onboarding,7
+IT / Cloud error,User error,13
+IT / Cloud error,Charging,2
+IT / Cloud error,Unstable charging,7
+IT / Cloud error,Termination,1
+IT / Cloud error,Service,2
+IT / Cloud error,Invoice,1
+Charging,App,37
+Charging,Charger offline,23
+Charging,Unstable charging,35
+Charging,Charging,48
+Charging,Other,20
+Charging,Ordering,26
+Charging,Subscription and pricing,9
+Charging,Onboarding,10
+Charging,Hardware failure,4
+Charging,Invoice,7
+Charging,User error,18
+Charging,IT / Cloud error,6
+Charging,Termination,1
+RFID,RFID,162
+RFID,App,31
+RFID,Ordering,8
+RFID,Hardware failure,2
+RFID,Invoice,2
+RFID,Subscription and pricing,2
+RFID,Onboarding,8
+RFID,Charging,1
+RFID,Other,6
+RFID,Charger offline,1
+RFID,Service,1
+RFID,Unstable charging,1
+RFID,User error,1
+RFID,IT / Cloud error,1

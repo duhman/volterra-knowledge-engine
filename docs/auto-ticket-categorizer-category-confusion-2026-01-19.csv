@@ -1,0 +1,30 @@
+true_category,pred_category,count
+General,General,7347
+General,Payment,23
+General,Technical,41
+General,Technical Support,16
+General,RFID Support,11
+General,Administrative,21
+Technical,Technical,1139
+Technical,Administrative,96
+Technical,General,73
+Technical,Payment,16
+Payment,Payment,578
+Payment,General,99
+Payment,Administrative,68
+Payment,Technical,27
+Administrative,Administrative,1115
+Administrative,General,280
+Administrative,Technical,171
+Administrative,RFID Support,4
+Administrative,Payment,61
+Administrative,Order Support,1
+Technical Support,Technical Support,22
+Technical Support,General,27
+Technical Support,Technical,3
+RFID Support,General,13
+RFID Support,RFID Support,41
+Order Support,General,10
+Administrative;Payment,Payment,1
+Administrative;Technical,Technical,2
+Administrative;Technical,Administrative,1
