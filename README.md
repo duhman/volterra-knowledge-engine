@@ -1,11 +1,35 @@
 # Volterra Knowledge Engine
 
-> Enterprise document ingestion pipeline with AI embeddings, multi-source connectors, and GDPR-compliant semantic search.
+> The data backbone powering Volterra's AI tools -- ingesting documents from 5 sources, generating embeddings, and enforcing GDPR compliance so every other platform component can search company knowledge.
 
 ![TypeScript](https://img.shields.io/badge/TypeScript-5.x-blue)
 ![Node.js](https://img.shields.io/badge/Node.js-18+-339933)
 ![Supabase](https://img.shields.io/badge/Supabase-pgvector-3ECF8E)
 ![OpenAI](https://img.shields.io/badge/OpenAI-Embeddings-412991)
+
+## The Problem
+
+Operational knowledge was scattered across five systems -- Notion wikis, SharePoint drives, HubSpot tickets, Slack threads, and local file shares. Support agents re-answered questions that had been solved months earlier. Product and leadership had no way to search across sources. And with EU-based customers, any AI tool touching this data needed automatic PII detection and GDPR-compliant handling.
+
+## What This Does
+
+- **Multi-source ingestion** -- Pulls documents from Notion, SharePoint, HubSpot, Slack, and local files through a unified processing pipeline with format-specific parsers (PDF, DOCX, XLSX, CSV, HTML, email)
+- **Automatic PII detection and GDPR compliance** -- Flags or redacts personal data before embedding, classifies document sensitivity, enforces access levels
+- **27 MCP tools for AI agents** -- Exposes the entire knowledge base via Model Context Protocol so downstream apps (Semantic Platform, website AI chat) can query it programmatically
+
+## Impact
+
+| Metric                | Detail                                                                   |
+| --------------------- | ------------------------------------------------------------------------ |
+| Ingestion sources     | 5 systems unified into one searchable pipeline                           |
+| MCP tools shipped     | 27 read-only tools for AI agent access                                   |
+| Ticket categorization | 90.6% accuracy over 11,800+ tickets (auto-classifier built on this data) |
+| PII handling          | Automatic detection and sensitivity classification                       |
+| Sync frequency        | Daily automated ingestion via pg_cron + Edge Functions                   |
+
+## Part of the Volterra Platform
+
+Knowledge Engine is the foundation layer. It generates the embeddings that power the [Semantic Platform](../volterra-semantic-platform/)'s 5 GPT apps, feeds the [website](../volterra-web/) AI chat via n8n, and provides ticket data for [Call Intelligence](../volterra-call-intelligence/) analysis.
 
 ## Architecture
 
