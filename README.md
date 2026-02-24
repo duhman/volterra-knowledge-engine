@@ -51,15 +51,15 @@ graph TB
 
     Sources -->|Fetch| DP
 
-    subgraph Edge Functions
+    subgraph EF[Edge Functions]
         HTS[HubSpot Ticket Sync]
         NPS[Notion Pages Sync]
         SCS[Slack Channel Sync]
         MCP[MCP Server]
     end
 
-    Cron[pg_cron] -->|Scheduled| Edge Functions
-    Edge Functions -->|Read/Write| DB
+    Cron[pg_cron] -->|Scheduled| EF
+    EF -->|Read/Write| DB
 ```
 
 ## Key Features
